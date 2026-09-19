@@ -38,7 +38,7 @@ export function Games() {
             <iframe
               id="cetraminos-frame"
               key={iframeKey}
-              src="/games/cetraminos/index.html"
+              src={`${import.meta.env.BASE_URL}games/cetraminos/index.html`}
               title="Cetraminos WebAssembly"
               className="w-full h-full border-0"
               allow="autoplay; fullscreen"

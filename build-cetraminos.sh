@@ -74,6 +74,9 @@ emcc \
     --preload-file fonts \
     --preload-file CetraminosMusic.mp3 \
     --preload-file CetraminosMusic2.mp3 \
+    --preload-file CetraminosMusic_speed1.mp3 \
+    --preload-file CetraminosMusic_speed2.mp3 \
+    --preload-file CetraminosMusic_speed3.mp3 \
     -o "$DEST_DIR/Cetraminos.js"
 
 echo -e "${GREEN}[✓] Success! Cetraminos compiled to WebAssembly!${NC}"

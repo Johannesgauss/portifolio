@@ -137,8 +137,12 @@
       onRuntimeInitialized: function() {
         if (statusOverlay) statusOverlay.style.display = 'none';
         canvas.focus();
+      },
+      locateFile: function(path, prefix) {
+        return prefix + path;
       }
     };
+
 
     // Load compiled Cetraminos WebAssembly script
     var script = document.createElement('script');

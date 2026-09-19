@@ -49,21 +49,22 @@ echo -e "${BLUE}[*] WebAssembly destination: $DEST_DIR${NC}"
 
 mkdir -p "$DEST_DIR"
 
-# 3. Execute compilation with emcc
-cd "$CETRAMINOS_SRC/src"
+# 3. Execute compilation with emcc in DEST_DIR so all generated asset paths are purely relative
+cd "$DEST_DIR"
 
-echo -e "${YELLOW}[*] Generating Cetraminos.js and Cetraminos.wasm with SDL2 MP3 support...${NC}"
+echo -e "${YELLOW}[*] Generating Cetraminos.js and Cetraminos.wasm with purely relative asset paths...${NC}"
 
 emcc \
-    backendPieces.c \
-    frontendPieces.c \
-    main.c \
-    music.c \
-    randomGenerator.c \
-    scoreSystem.c \
-    Cetraminos.c \
-    menu.c \
-    GString.c \
+    "$CETRAMINOS_SRC/src/backendPieces.c" \
+    "$CETRAMINOS_SRC/src/frontendPieces.c" \
+    "$CETRAMINOS_SRC/src/main.c" \
+    "$CETRAMINOS_SRC/src/music.c" \
+    "$CETRAMINOS_SRC/src/randomGenerator.c" \
+    "$CETRAMINOS_SRC/src/scoreSystem.c" \
+    "$CETRAMINOS_SRC/src/Cetraminos.c" \
+    "$CETRAMINOS_SRC/src/menu.c" \
+    "$CETRAMINOS_SRC/src/GString.c" \
+    -I"$CETRAMINOS_SRC/src" \
     -O3 \
     -s USE_SDL=2 \
     -s USE_SDL_TTF=2 \
@@ -72,13 +73,14 @@ emcc \
     -s WASM=1 \
     -s ASYNCIFY=1 \
     -s ALLOW_MEMORY_GROWTH=1 \
-    --preload-file fonts \
-    --preload-file CetraminosMusic.mp3 \
-    --preload-file CetraminosMusic2.mp3 \
-    --preload-file CetraminosMusic_speed1.mp3 \
-    --preload-file CetraminosMusic_speed2.mp3 \
-    --preload-file CetraminosMusic_speed3.mp3 \
-    -o "$DEST_DIR/Cetraminos.js"
+    --preload-file "$CETRAMINOS_SRC/src/fonts@fonts" \
+    --preload-file "$CETRAMINOS_SRC/src/CetraminosMusic.mp3@CetraminosMusic.mp3" \
+    --preload-file "$CETRAMINOS_SRC/src/CetraminosMusic2.mp3@CetraminosMusic2.mp3" \
+    --preload-file "$CETRAMINOS_SRC/src/CetraminosMusic_speed1.mp3@CetraminosMusic_speed1.mp3" \
+    --preload-file "$CETRAMINOS_SRC/src/CetraminosMusic_speed2.mp3@CetraminosMusic_speed2.mp3" \
+    --preload-file "$CETRAMINOS_SRC/src/CetraminosMusic_speed3.mp3@CetraminosMusic_speed3.mp3" \
+    -o "Cetraminos.js"
+
 
 echo -e "${GREEN}[✓] Success! Cetraminos compiled to WebAssembly!${NC}"
 echo -e "${GREEN}[✓] Generated artifacts in $DEST_DIR:${NC}"

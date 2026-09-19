@@ -35,7 +35,8 @@ echo -e "${GREEN}[✓] Emscripten detected: $(emcc -v 2>&1 | head -n 1)${NC}"
 # 2. Input and output directories
 PORTFOLIO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CETRAMINOS_SRC="${1:-/home/cloud/my_projects/Cetraminos/Cetraminos}"
-DEST_DIR="$PORTFOLIO_DIR/frontend/public/games/cetraminos"
+DEST_DIR="$PORTFOLIO_DIR/public/games/cetraminos"
+
 
 if [ ! -d "$CETRAMINOS_SRC/src" ]; then
     echo -e "${RED}[!] Cetraminos directory not found at: $CETRAMINOS_SRC${NC}"

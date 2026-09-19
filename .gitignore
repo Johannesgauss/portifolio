@@ -57,4 +57,12 @@ GEMINI.md
 CetraminosMusic.mp3
 CetraminosMusic2.mp3
 
+# Compiled WebAssembly game binaries and assets (built locally, contains music)
+frontend/public/games/cetraminos/Cetraminos.wasm
+frontend/public/games/cetraminos/Cetraminos.data
+frontend/public/games/cetraminos/Cetraminos.js
+*.wasm
+*.data
+
+
 
